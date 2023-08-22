@@ -16,7 +16,8 @@ module.exports = {
       },
     },
     extend: {
-      colors: {
+      colors: { 
+        logo: '#303453',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -26,6 +27,8 @@ module.exports = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+       
+         
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

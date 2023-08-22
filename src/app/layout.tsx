@@ -1,8 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { cn } from '@/lib/utils'
+import { Inter, Oxygen } from 'next/font/google'
+import Header from '@/components/layout/header'
 
 const inter = Inter({ subsets: ['latin'] })
+const oxygen  = Oxygen({weight: ["300", "400", "700"], subsets: ["latin"]})
 
 export const metadata: Metadata = {
   title: 'Bags',
@@ -16,7 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(oxygen.className, "min-h-screen flex flex-col")}>
+        <Header/>
+        <main className='flex-grow'>
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
