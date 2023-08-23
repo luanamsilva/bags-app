@@ -13,6 +13,7 @@ return stripeProducts.data.map((p: Stripe.Product): ProductType =>{
   return{
     id: p.id.toString(),
     name: p.name,
+    description: p.description,
     price: (p.default_price as Stripe.Price)?.unit_amount_decimal ?? "0",
     image: p.images[0]
 
