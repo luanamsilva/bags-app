@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
 
 
 export default function UserNav(){
@@ -48,8 +49,8 @@ export default function UserNav(){
           </DropdownMenuItem>
           <DropdownMenuItem>
             Configurações
-                     </DropdownMenuItem>
-          <DropdownMenuItem>Produtos</DropdownMenuItem>
+           </DropdownMenuItem>
+     
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
