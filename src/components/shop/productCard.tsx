@@ -18,19 +18,20 @@ export default function ProductCard({id, name, price, description, image}: Produ
 
   }
   return(
-<Card>
+<Card >
   <CardHeader>
     <CardTitle className="flex items-center justify-center">{name}</CardTitle>
   </CardHeader>
-  <CardDescription className="relative w-full h-60">
+  <CardDescription className="relative w-full h-60 ">
   <Image 
   src={image}
   fill
   sizes="100%"
-   alt="image"
+   alt={name}
+   className="object-contain"
    />
   </CardDescription> 
-  <CardContent className="flex items-center justify-center">  <p className="min-h-[6rem]">{description}</p></CardContent>
+  <CardContent className="flex items-center justify-center mt-5">  <p className="min-h-[6rem]">{description}</p></CardContent>
  
   <CardFooter className="flex items-center justify-between">
     <div>

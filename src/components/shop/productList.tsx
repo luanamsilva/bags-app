@@ -28,10 +28,10 @@ console.log(e)
 export default async function ProductList(){
   const products = await getProducts()
   return(
-  <>
+  <section className="grid gap-5 m-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 {products?.map((product)=>(
 <ProductCard key={product.id}{...product}/>
 ))}
-  </>
+  </section>
   )
 }
