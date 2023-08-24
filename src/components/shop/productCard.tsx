@@ -11,21 +11,34 @@ import {
 } from "@/components/ui/card"
 import { Button } from "../ui/button"
 import Image from "next/image"
-
+import { useToast } from "../ui/use-toast"
 
 
 
 export default function ProductCard({id, name, price, description, image, currency}: ProductType){
   
   const {addItem} = useShoppingCart()
+
+  const {toast} = useToast()
+
   const formatPrice = formatCurrencyString({
     value: Number(price),
     currency,
     language: 'pt-BR'
   })
 
-  const  addCart = async ()=>{
-
+  const  addCart = async (e: React.MouseEvent <HTMLButtonElement>)=>{
+    e.preventDefault()
+    addItem({
+      name,
+      id,
+      price: Number(price),
+      currency,
+      image
+    })
+    toast({
+      title: `${name} adicionado(a) com sucesso!`
+    })
   }
   return(
 <Card >
