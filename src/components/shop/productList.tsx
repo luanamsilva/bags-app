@@ -15,8 +15,9 @@ return stripeProducts.data.map((p: Stripe.Product): ProductType =>{
     name: p.name,
     description: p.description,
     price: (p.default_price as Stripe.Price)?.unit_amount_decimal ?? "0",
-    image: p.images[0]
-
+    currency: (p.default_price as Stripe.Price)?.currency ?? 'BRL',
+    image: p.images[0],
+   
   }
 })
   } catch(e){
