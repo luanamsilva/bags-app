@@ -1,25 +1,31 @@
 "use client"
+import React from 'react'
 import { useState } from "react";
 import Image from "next/image";
 import { useShoppingCart } from 'use-shopping-cart';
-import { Trash2 } from "lucide-react";
+import { Loader, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { cn } from "@/lib/utils";
 
 export default function Cart() {
-  const { cartCount, cartDetails, redirectToCheckout } = useShoppingCart();
+  const { cartCount, cartDetails, removeItem, redirectToCheckout } = useShoppingCart();
   const [checkingOut, setCheckinOut] = useState(false);
+  const { clearCart } = useShoppingCart()
+async function checkout() {
+  
+}
+
   return (
-    <section className="flex flex-col items-center ">
-    
+    <section className="flex flex-col items-center  justify-center pt-2">
+  {cartCount === 0 ? "Seu carrinho está vazio" :
      
           <Table>
           
@@ -53,13 +59,28 @@ export default function Cart() {
               <TableCell className="text-center">{cartDetails[key].quantity} </TableCell>
               <TableCell className="text-right ">{cartDetails[key].formattedValue}</TableCell>
               
-              <TableCell> <Trash2 size={18} className="center-icon cursor-pointer hover:opacity-40"/></TableCell>
+              <TableCell> 
+                <Trash2 size={18} onClick={() => removeItem(cartDetails[key].id)}
+ className="center-icon cursor-pointer hover:opacity-40"/>
+                </TableCell>
             </TableRow>))}
           </TableBody>  
-        </Table>
-      
- <Button className="m-4">Fechar Pedido</Button>
-
+        </Table> }
+  <div className={cn("flex items-center justify-end", 
+  cartCount === undefined || cartCount <= 0 ? "hidden" : "")}> 
+ <Button
+  variant={"default"} 
+  size={"lg"}
+  onClick={checkout}
+  disabled={checkingOut}
+  className="m-4">
+    {checkingOut ? (<div className="flex items-center justify-between gap-2">
+      <Loader className="animate-spin 2s repeat-infinite"/> Finalizando...
+    </div>):('Fechar Pedido')}
+    
+    </Button>
+    <Button className="bg-gray-100 text-logo hover:bg-slate-300" onClick={clearCart}>Esvaziar carrinho</Button>
+</div>  
     </section>
   );
 }
