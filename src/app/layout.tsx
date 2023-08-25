@@ -5,6 +5,7 @@ import { Inter, Oxygen } from 'next/font/google'
 import Header from '@/components/layout/header'
 import AppCartProvider from '@/components/shop/cartProvider'
 import { Toaster } from '@/components/ui/toaster'
+import Footer from '@/components/layout/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 const oxygen  = Oxygen({weight: ["300", "400", "700"], subsets: ["latin"]})
@@ -28,6 +29,7 @@ export default function RootLayout({
         <main className='flex-grow'>
           {children}
         </main>
+        <Footer/>
         </AppCartProvider>
       </body>
     </html>
