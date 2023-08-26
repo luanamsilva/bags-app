@@ -16,7 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export default function Cart() {
-  const { cartCount, cartDetails, removeItem, redirectToCheckout } = useShoppingCart();
+  const { cartCount, cartDetails, removeItem, incrementItem,decrementItem, redirectToCheckout } = useShoppingCart();
   const [checkingOut, setCheckinOut] = useState(false);
   const { clearCart } = useShoppingCart()
 async function checkout() {
@@ -24,7 +24,7 @@ async function checkout() {
 }
 
   return (
-    <section className="flex flex-col items-center  justify-center pt-2">
+    <section className="flex flex-col items-center text-logo justify-center pt-2">
   {cartCount === 0 ? "Seu carrinho está vazio" :
      
           <Table>
@@ -56,7 +56,11 @@ async function checkout() {
               </div>
               </TableCell>
               <TableCell>{cartDetails[key].name}</TableCell>
-              <TableCell className="text-center">{cartDetails[key].quantity} </TableCell>
+              <TableCell className="text-center">
+              <Button  onClick={() => incrementItem(cartDetails[key].id)} className='bg-white text-logo m-3 hover:bg-white hover:border'>+</Button>
+                {cartDetails[key].quantity}
+                <Button onClick={() => decrementItem(cartDetails[key].id)} className='bg-white text-logo m-3 hover:bg-white hover:border'>-</Button>
+                 </TableCell>
               <TableCell className="text-right ">{cartDetails[key].formattedValue}</TableCell>
               
               <TableCell> 
