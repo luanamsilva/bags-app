@@ -19,8 +19,20 @@ export default function Cart() {
   const { cartCount, cartDetails, removeItem, incrementItem,decrementItem, redirectToCheckout } = useShoppingCart();
   const [checkingOut, setCheckinOut] = useState(false);
   const { clearCart } = useShoppingCart()
-async function checkout() {
   
+async function checkout() {
+  setCheckinOut(true)
+  const response = await fetch("/api/checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "aplication/json"
+    },
+    body: JSON.stringify(cartDetails)
+
+  })
+  const {id} = await response.json()
+  const result = await redirectToCheckout(id)
+  setCheckinOut(false)
 }
 
   return (
@@ -57,9 +69,11 @@ async function checkout() {
               </TableCell>
               <TableCell>{cartDetails[key].name}</TableCell>
               <TableCell className="text-center">
-              <Button  onClick={() => incrementItem(cartDetails[key].id)} className='bg-white text-logo m-3 hover:bg-white hover:border'>+</Button>
+              <Button onClick={() => decrementItem(cartDetails[key].id)} className='bg-white text-logo m-3 hover:bg-white hover:border'>-</Button>
+
+              
                 {cartDetails[key].quantity}
-                <Button onClick={() => decrementItem(cartDetails[key].id)} className='bg-white text-logo m-3 hover:bg-white hover:border'>-</Button>
+                <Button  onClick={() => incrementItem(cartDetails[key].id)} className='bg-white text-logo m-3 hover:bg-white hover:border'>+</Button>
                  </TableCell>
               <TableCell className="text-right ">{cartDetails[key].formattedValue}</TableCell>
               
