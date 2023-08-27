@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   
 
 const cartDetails = await request.json()
-const baseUrl = request.headers.get("origen")
+const baseUrl = request.headers.get("origin")
 
 const stripeInventory = await stripe.products.list({
   expand: ["data.default_price"]
@@ -26,7 +26,13 @@ return{
 
 const line_items = validateCartItems(products, cartDetails)
 
+const session = await stripe.checkout.sessions.create({
+  mode: "payment",
+  payment_method_types: ["card"],
+  line_items: line_items,
+  success_url: `${baseUrl}/success/{CHECKOUT_SESSION_ID}`,
+  cancel_url: `${baseUrl}/cart`
+})
 
-
-  return NextResponse.json({}, {status: 200})
+  return NextResponse.json(session, {status: 200})
 }
