@@ -47,6 +47,7 @@ export default function ProductCard({id, name, price, description, image, curren
   </CardHeader>
   <CardDescription className="relative w-full h-60 ">
   <Image 
+  
   src={image}
   fill
   sizes="100%"

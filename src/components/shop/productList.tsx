@@ -1,7 +1,9 @@
 import { ProductType } from "@/app/types/ProductsType"
 import stripe from "@/lib/stripe"
 import Stripe from "stripe"
+import Link from "next/link"
 import ProductCard from "./productCard"
+
 
 async function getProducts(){
   try{
@@ -31,7 +33,9 @@ export default async function ProductList(){
   return(
   <section className="grid gap-5 m-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 {products?.map((product)=>(
+  <Link key={product.id} href={`/products/${product.id}`} passHref>
 <ProductCard key={product.id}{...product}/>
+</Link>
 ))}
   </section>
   )
