@@ -1,3 +1,13 @@
+
+![Screenshot from 2023-09-09 16-39-35](https://github.com/luanamsilva/bags-app/assets/83930333/59246665-a258-45c6-aa86-753716a66afd)
+
+![Screenshot from 2023-09-09 16-39-52](https://github.com/luanamsilva/bags-app/assets/83930333/a90f9f97-ca53-4c40-b069-f5bc411be300)
+
+
+Link: https://bags-app.vercel.app/
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
